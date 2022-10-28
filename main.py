@@ -61,7 +61,7 @@ def selecionar(conexao,sql):
 
 #mostrar dados retornados da consulta
 res=selecionar(var_conexao,select_sql)
-
+print("\n--Os dados da tabela alunos são: --")
 for i in res:
   print(i)
 
