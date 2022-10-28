@@ -35,7 +35,7 @@ criar_tabela (var_conexao, create_sql)
 #inserir dados
 nome = input("Insira seu nome: ")
 email = input("Insira seu e-mail: ")
-insert_sql = """INSERT INTO aluno (nome, email) VALUES ('++nome++', '++email++');"""
+insert_sql = "INSERT INTO aluno (nome, email) VALUES ('"+nome+"', '"+email+"');"
 
 def inserir(conexao,sql):
   try:
@@ -47,5 +47,22 @@ def inserir(conexao,sql):
     print("Erro ao inserir dados na tabela aluno!", e)
 
 inserir(var_conexao, insert_sql)
+
+#selecionar dados
+select_sql = "SELECT * FROM aluno;"
+def selecionar(conexao,sql):
+  try:
+    cursor=conexao.cursor()
+    cursor.execute(sql)
+    resultado = cursor.fetchall()
+    return resultado
+  except Error as e:
+    print("Não foi possível selecionar os dados",e)
+
+#mostrar dados retornados da consulta
+res=selecionar(var_conexao,select_sql)
+
+for i in res:
+  print(i)
 
 var_conexao.close()
